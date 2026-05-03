@@ -1,0 +1,9 @@
+<%= form_with model: [:admin, @bus, @stop], class: "space-y-3" do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :position %>
+  <%= f.number_field :position, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :expected_time %>
+  <%= f.time_field :expected_time, class: "w-full border rounded px-2 py-2" %>
+  <%= f.submit class: "rounded-xl bg-indigo-600 text-white px-6 py-2 font-semibold" %>
+<% end %>

@@ -1,0 +1,13 @@
+<% content_for :title, "Classes" %>
+<div class="flex justify-between items-center">
+  <h1 class="text-xl font-bold">School classes</h1>
+  <%= link_to "New", new_admin_school_class_path, class: "text-indigo-600 underline text-sm" %>
+</div>
+<ul class="mt-4 space-y-2 text-sm">
+  <% @school_classes.each do |c| %>
+    <li class="flex justify-between border rounded-lg p-3 bg-white">
+      <span><%= c.name %> (pos <%= c.position %>)</span>
+      <%= link_to "Edit", edit_admin_school_class_path(c), class: "text-indigo-600 underline" %>
+    </li>
+  <% end %>
+</ul>

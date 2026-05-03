@@ -1,0 +1,25 @@
+<% content_for :title, "Students" %>
+<div class="flex justify-between items-center">
+  <h1 class="text-xl font-bold">Students</h1>
+  <%= link_to "New", new_admin_student_path, class: "text-indigo-600 underline text-sm" %>
+</div>
+
+<%= form_with url: import_admin_students_path, method: :post, multipart: true, class: "mt-4 p-3 border rounded bg-white text-sm" do %>
+  <label class="block font-medium">Import CSV (columns: section_id, admission_no, full_name, gender, guardian_name, guardian_phone)</label>
+  <%= file_field_tag :csv, accept: "text/csv", class: "mt-1" %>
+  <%= submit_tag "Upload", class: "mt-2 rounded bg-slate-800 text-white px-3 py-1 text-sm" %>
+<% end %>
+
+<%= form_with url: admin_students_path, method: :get, class: "mt-4 flex gap-2 text-sm" do %>
+  <%= text_field_tag :q, params[:q], placeholder: "Search name / admission", class: "flex-1 border rounded px-2 py-1" %>
+  <%= submit_tag "Search", class: "rounded bg-indigo-600 text-white px-3 py-1" %>
+<% end %>
+
+<ul class="mt-4 space-y-2 text-sm">
+  <% @students.each do |st| %>
+    <li class="flex justify-between border rounded-lg p-3 bg-white">
+      <span><%= st.full_name %> (<%= st.admission_no %>)</span>
+      <%= link_to "Edit", edit_admin_student_path(st), class: "text-indigo-600 underline" %>
+    </li>
+  <% end %>
+</ul>

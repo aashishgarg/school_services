@@ -1,0 +1,15 @@
+admin:
+  school: one
+  email_address: admin@test.local
+  full_name: Admin User
+  role: <%= User.roles[:admin] %>
+  active: true
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+
+teacher:
+  school: one
+  email_address: teacher@test.local
+  full_name: Teacher User
+  role: <%= User.roles[:teacher] %>
+  active: true
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>

@@ -1,0 +1,32 @@
+<% content_for :title, "Attendance report" %>
+<h1 class="text-xl font-bold">Daily attendance</h1>
+<%= form_with url: admin_attendance_path, method: :get, class: "mt-2 flex gap-2 text-sm items-center" do %>
+  <%= date_field_tag :date, @date %>
+  <%= submit_tag "Go", class: "rounded bg-indigo-600 text-white px-2 py-1" %>
+<% end %>
+<%= link_to "Export CSV", admin_export_attendance_path(start_on: @date.beginning_of_month, end_on: @date.end_of_month, format: :csv), class: "mt-2 inline-block text-sm text-indigo-600 underline" %>
+
+<table class="mt-4 w-full text-xs border-collapse">
+  <thead>
+    <tr class="text-left border-b">
+      <th class="py-2">Section</th>
+      <th>Students</th>
+      <th>1st present</th>
+      <th>1st absent</th>
+      <th>2nd present</th>
+      <th>2nd absent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stats.each do |row| %>
+      <tr class="border-b">
+        <td class="py-2"><%= row.section.display_name %></td>
+        <td><%= row.student_count %></td>
+        <td><%= row.first_present || "—" %></td>
+        <td><%= row.first_absent || "—" %></td>
+        <td><%= row.second_present || "—" %></td>
+        <td><%= row.second_absent || "—" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

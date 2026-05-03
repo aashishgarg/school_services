@@ -1,0 +1,12 @@
+<% content_for :title, "Trips" %>
+<h1 class="text-xl font-bold">Today&apos;s trips</h1>
+<ul class="mt-4 space-y-2">
+  <% @trips.each do |trip| %>
+    <li>
+      <%= link_to "#{trip.bus.name} (#{trip.shift})", transport_trip_path(trip), class: "block rounded-xl border bg-white p-4 font-semibold text-indigo-700" %>
+    </li>
+  <% end %>
+</ul>
+<% if @trips.empty? %>
+  <p class="text-sm text-slate-500 mt-2">No trips yet — start from the dashboard.</p>
+<% end %>

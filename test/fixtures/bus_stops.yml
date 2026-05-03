@@ -1,0 +1,17 @@
+a:
+  school: one
+  bus: one
+  name: Stop A
+  position: 1
+
+b:
+  school: one
+  bus: one
+  name: Stop B
+  position: 2
+
+c:
+  school: one
+  bus: one
+  name: Stop C
+  position: 3

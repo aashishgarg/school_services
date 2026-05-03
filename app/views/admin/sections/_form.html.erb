@@ -1,0 +1,11 @@
+<%= form_with model: [:admin, @section], class: "space-y-3" do |f| %>
+  <%= f.label :school_class_id %>
+  <%= f.collection_select :school_class_id, @school_classes, :id, :name, {}, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :academic_year_id %>
+  <%= f.collection_select :academic_year_id, @academic_years, :id, :name, {}, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :class_teacher_id, "Class teacher" %>
+  <%= f.collection_select :class_teacher_id, @teachers, :id, :full_name, { include_blank: true }, class: "w-full border rounded px-2 py-2" %>
+  <%= f.submit class: "rounded-xl bg-indigo-600 text-white px-6 py-2 font-semibold" %>
+<% end %>

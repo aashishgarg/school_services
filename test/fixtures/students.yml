@@ -1,0 +1,34 @@
+s1:
+  school: one
+  section: one
+  admission_no: T-1
+  full_name: Student One
+  gender: other
+
+s2:
+  school: one
+  section: one
+  admission_no: T-2
+  full_name: Student Two
+  gender: other
+
+s3:
+  school: one
+  section: one
+  admission_no: T-3
+  full_name: Student Three
+  gender: other
+
+s4:
+  school: one
+  section: one
+  admission_no: T-4
+  full_name: Student Four
+  gender: other
+
+s5:
+  school: one
+  section: one
+  admission_no: T-5
+  full_name: Student Five
+  gender: other

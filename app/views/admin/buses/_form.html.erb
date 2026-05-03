@@ -1,0 +1,11 @@
+<%= form_with model: [:admin, @bus], class: "space-y-3" do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :plate_no %>
+  <%= f.text_field :plate_no, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :capacity %>
+  <%= f.number_field :capacity, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :in_charge_user_id, "Teacher in charge" %>
+  <%= f.collection_select :in_charge_user_id, @teachers, :id, :full_name, { include_blank: true }, class: "w-full border rounded px-2 py-2" %>
+  <%= f.submit class: "rounded-xl bg-indigo-600 text-white px-6 py-2 font-semibold" %>
+<% end %>

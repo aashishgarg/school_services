@@ -1,14 +1,47 @@
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+# frozen_string_literal: true
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  resource :session, only: %i[ new create destroy ]
+  resources :passwords, param: :token, only: %i[ new create edit update ]
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  root "dashboard#show"
+
+  namespace :admin do
+    root "dashboard#show"
+    resource :settings, only: %i[ show update ]
+    resources :academic_years
+    resources :school_classes
+    resources :sections do
+      resources :teacher_assignments, only: %i[ create destroy ]
+    end
+    resources :students do
+      collection do
+        post :import
+      end
+    end
+    resources :users
+    resources :buses do
+      resources :bus_stops, except: %i[ show ]
+    end
+    get "transport", to: "transport#index"
+    get "attendance", to: "attendance#index"
+    get "attendance/export", to: "attendance_exports#show", defaults: { format: :csv }, as: :export_attendance
+    resources :audits, only: %i[ index ]
+  end
+
+  namespace :attendance do
+    get "sections/:section_id/halves", to: "section_halves#show", as: :section_halves
+    resources :sessions, only: %i[ index new create show edit update ]
+  end
+
+  namespace :transport do
+    resources :trips, only: %i[ index show create ] do
+      member do
+        post :complete
+      end
+      resources :stop_progresses, only: %i[ update ]
+    end
+  end
 end

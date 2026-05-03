@@ -1,0 +1,13 @@
+<% content_for :title, "Academic years" %>
+<div class="flex justify-between items-center">
+  <h1 class="text-xl font-bold">Academic years</h1>
+  <%= link_to "New", new_admin_academic_year_path, class: "text-indigo-600 underline text-sm" %>
+</div>
+<ul class="mt-4 space-y-2 text-sm">
+  <% @academic_years.each do |y| %>
+    <li class="flex justify-between border rounded-lg p-3 bg-white">
+      <span><%= y.name %> <%= y.current? ? "(current)" : "" %></span>
+      <%= link_to "Edit", edit_admin_academic_year_path(y), class: "text-indigo-600 underline" %>
+    </li>
+  <% end %>
+</ul>

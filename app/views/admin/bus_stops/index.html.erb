@@ -1,0 +1,12 @@
+<% content_for :title, "Bus stops" %>
+<h1 class="text-xl font-bold">Stops — <%= @bus.name %></h1>
+<%= link_to "New stop", new_admin_bus_bus_stop_path(@bus), class: "text-indigo-600 underline text-sm" %>
+<ul class="mt-4 space-y-2 text-sm">
+  <% @stops.each do |s| %>
+    <li class="flex justify-between border rounded-lg p-3 bg-white">
+      <span><%= s.position %>. <%= s.name %></span>
+      <%= link_to "Edit", edit_admin_bus_bus_stop_path(@bus, s), class: "text-indigo-600 underline" %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "Back to buses", admin_buses_path, class: "mt-4 inline-block text-sm underline" %>

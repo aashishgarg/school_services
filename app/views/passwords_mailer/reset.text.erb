@@ -1,0 +1,4 @@
+Hi <%= @user.full_name %>,
+
+Reset your password (15 minute window):
+<%= edit_password_url(@user.generate_token_for(:password_reset)) %>

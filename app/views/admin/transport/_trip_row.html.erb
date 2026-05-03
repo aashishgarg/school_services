@@ -1,0 +1,15 @@
+<% total = trip.bus_stop_progresses.size %>
+<% done = trip.bus_stop_progresses.where.not(status: :pending).count %>
+<% pct = total.zero? ? 0 : (done * 100.0 / total).round %>
+<tr id="<%= dom_id(trip) %>">
+  <td class="py-2 pr-2"><%= trip.bus.name %></td>
+  <td class="pr-2 capitalize"><%= trip.shift %></td>
+  <td class="pr-2"><%= done %>/<%= total %> (<%= pct %>%)</td>
+  <td>
+    <% if trip.completed_at %>
+      <span class="text-emerald-700 font-medium">Completed</span>
+    <% else %>
+      <span class="text-amber-700">In progress</span>
+    <% end %>
+  </td>
+</tr>

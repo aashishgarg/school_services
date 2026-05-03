@@ -1,0 +1,5 @@
+one:
+  name: Test School
+  slug: test-school
+  time_zone: UTC
+  settings: <%= {}.to_json %>

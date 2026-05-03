@@ -1,0 +1,6 @@
+<nav class="fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 flex justify-around py-2 text-xs text-slate-600 z-50" aria-label="Main">
+  <%= link_to "Today", root_path, class: "flex flex-col items-center #{'text-indigo-600 font-semibold' if request.path == root_path}" %>
+  <%= link_to "Attendance", attendance_sessions_path, class: "flex flex-col items-center #{'text-indigo-600 font-semibold' if request.path.start_with?('/attendance')}" %>
+  <%= link_to "Bus", transport_trips_path, class: "flex flex-col items-center #{'text-indigo-600 font-semibold' if request.path.start_with?('/transport')}" %>
+  <%= button_to "Out", session_path, method: :delete, class: "text-slate-500 flex flex-col items-center bg-transparent border-0 cursor-pointer" %>
+</nav>

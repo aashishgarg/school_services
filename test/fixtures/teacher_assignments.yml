@@ -1,0 +1,5 @@
+one:
+  school: one
+  user: teacher
+  section: one
+  role: <%= TeacherAssignment.roles[:class_teacher] %>

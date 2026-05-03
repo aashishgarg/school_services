@@ -1,0 +1,21 @@
+<%= form_with model: [:admin, @student], class: "space-y-3" do |f| %>
+  <%= f.label :section_id %>
+  <%= f.collection_select :section_id, @sections, :id, :display_name, {}, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :admission_no %>
+  <%= f.text_field :admission_no, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :full_name %>
+  <%= f.text_field :full_name, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :gender %>
+  <%= f.text_field :gender, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :dob %>
+  <%= f.date_field :dob, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :guardian_name %>
+  <%= f.text_field :guardian_name, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :guardian_phone %>
+  <%= f.text_field :guardian_phone, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :bus_id %>
+  <%= f.collection_select :bus_id, Transport::Bus.where(school_id: Current.school.id), :id, :name, { include_blank: true }, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :bus_stop_id %>
+  <%= f.collection_select :bus_stop_id, Transport::BusStop.where(school_id: Current.school.id), :id, :name, { include_blank: true }, class: "w-full border rounded px-2 py-2" %>
+  <%= f.submit class: "rounded-xl bg-indigo-600 text-white px-6 py-2 font-semibold" %>
+<% end %>

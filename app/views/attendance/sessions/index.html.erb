@@ -1,0 +1,9 @@
+<% content_for :title, "Attendance" %>
+<h1 class="text-xl font-bold">Recent sessions</h1>
+<ul class="mt-4 space-y-2 text-sm">
+  <% @sessions.each do |s| %>
+    <li>
+      <%= link_to "#{s.section.display_name} — #{s.half} (#{s.on_date})", attendance_session_path(s), class: "text-indigo-600 underline" %>
+    </li>
+  <% end %>
+</ul>

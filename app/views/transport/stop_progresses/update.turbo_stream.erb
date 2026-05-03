@@ -1,0 +1,2 @@
+<%= turbo_stream.replace dom_id(@progress), partial: "transport/stop_progress", locals: { progress: @progress.reload, trip: @trip } %>
+<%= turbo_stream.replace "trip-complete-footer", partial: "transport/trip_complete_footer", locals: { trip: @trip.reload } %>

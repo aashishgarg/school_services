@@ -1,0 +1,21 @@
+<% content_for :title, "Edit section" %>
+<h1 class="text-xl font-bold">Edit section</h1>
+<%= render "form" %>
+
+<h2 class="mt-8 text-sm font-semibold text-slate-600">Teacher assignments</h2>
+<ul class="mt-2 text-sm space-y-1">
+  <% @section.teacher_assignments.includes(:user).each do |a| %>
+    <li class="flex justify-between border rounded p-2 bg-white">
+      <span><%= a.user.full_name %> — <%= a.role %></span>
+      <%= button_to "Remove", admin_section_teacher_assignment_path(@section, a), method: :delete, class: "text-red-600 text-xs" %>
+    </li>
+  <% end %>
+</ul>
+
+<%= form_with url: admin_section_teacher_assignments_path(@section), method: :post, scope: :teacher_assignment, class: "mt-4 space-y-2" do %>
+  <%= label_tag "teacher_assignment[user_id]", "Add teacher" %>
+  <%= select_tag "teacher_assignment[user_id]", options_from_collection_for_select(@teachers, :id, :full_name), include_blank: true, class: "w-full border rounded px-2 py-2" %>
+  <%= label_tag "teacher_assignment[role]", "Role" %>
+  <%= select_tag "teacher_assignment[role]", options_for_select(TeacherAssignment.roles.keys.map { |k| [ k.humanize, k ] }), class: "w-full border rounded px-2 py-2" %>
+  <%= submit_tag "Add", class: "rounded-xl bg-slate-800 text-white px-4 py-2 text-sm" %>
+<% end %>

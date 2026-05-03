@@ -1,0 +1,6 @@
+one:
+  school: one
+  name: 2025-26
+  starts_on: <%= Date.new(2025, 4, 1) %>
+  ends_on: <%= Date.new(2026, 3, 31) %>
+  current: true

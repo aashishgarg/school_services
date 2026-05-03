@@ -1,0 +1,7 @@
+<% content_for :title, "New password" %>
+<h1 class="text-xl font-bold">Set new password</h1>
+<%= form_with model: @user, url: password_path(params[:token]), method: :patch, class: "mt-4 space-y-3" do |f| %>
+  <%= f.password_field :password, required: true, autocomplete: "new-password", class: "w-full rounded-lg border px-3 py-2", placeholder: "New password" %>
+  <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "w-full rounded-lg border px-3 py-2", placeholder: "Confirm" %>
+  <%= f.submit "Save password", class: "w-full rounded-xl bg-indigo-600 text-white py-3 font-semibold" %>
+<% end %>

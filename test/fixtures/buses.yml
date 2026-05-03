@@ -1,0 +1,6 @@
+one:
+  school: one
+  name: Bus 1
+  plate_no: TEST-PLATE-1
+  capacity: 40
+  in_charge_user: teacher

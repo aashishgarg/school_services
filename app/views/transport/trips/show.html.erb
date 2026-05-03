@@ -1,0 +1,13 @@
+<% content_for :title, @trip.bus.name %>
+<h1 class="text-lg font-bold"><%= @trip.bus.name %></h1>
+<p class="text-sm text-slate-600"><%= @trip.on_date %> — <%= @trip.shift.humanize %></p>
+
+<div id="stop-progress-list" class="mt-4 space-y-3">
+  <% @progress_rows.each do |progress| %>
+    <%= render "transport/stop_progress", progress: progress, trip: @trip %>
+  <% end %>
+</div>
+
+<%= render "transport/trip_complete_footer", trip: @trip %>
+
+<%= link_to "Back", root_path, class: "mt-4 inline-block text-sm text-indigo-600 underline" %>

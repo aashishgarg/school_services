@@ -1,0 +1,19 @@
+<% content_for :title, "Edit attendance" %>
+<h1 class="text-lg font-bold">Edit attendance</h1>
+<p class="text-sm text-slate-600"><%= @section.display_name %> — <%= @session.half.humanize %> half</p>
+
+<%= form_with model: @session, url: attendance_session_path(@session), method: :patch, class: "mt-4 space-y-3", data: { controller: "mark-present" } do %>
+  <ul class="space-y-2">
+    <% @session.attendance_records.includes(:student).sort_by { |r| r.student.full_name }.each do |rec| %>
+      <li class="rounded-xl border bg-white p-3 flex items-center justify-between gap-3">
+        <span class="font-medium text-slate-900"><%= rec.student.full_name %></span>
+        <%= select_tag "statuses[#{rec.student_id}]", options_for_select([["Present","present"],["Absent","absent"],["Late","late"],["Excused","excused"]], rec.status), class: "text-base rounded-lg border px-2 py-2 min-w-[8rem]" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="fixed bottom-20 inset-x-0 px-4 max-w-lg mx-auto flex gap-2">
+    <button type="button" data-action="click->mark-present#mark" class="flex-1 rounded-xl border border-slate-300 bg-white py-3 font-semibold">All present</button>
+    <%= submit_tag "Save", class: "flex-1 rounded-xl bg-indigo-600 text-white py-3 font-semibold" %>
+  </div>
+<% end %>

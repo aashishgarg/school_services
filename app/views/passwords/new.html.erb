@@ -1,0 +1,7 @@
+<% content_for :title, "Forgot password" %>
+<h1 class="text-xl font-bold">Reset password</h1>
+<%= form_with url: passwords_path, class: "mt-4 space-y-3" do %>
+  <%= label_tag :email_address, "Email", class: "block text-sm font-medium" %>
+  <%= email_field_tag :email_address, params[:email_address], required: true, class: "w-full rounded-lg border px-3 py-2" %>
+  <%= submit_tag "Email reset instructions", class: "w-full rounded-xl bg-indigo-600 text-white py-3 font-semibold" %>
+<% end %>

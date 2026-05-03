@@ -1,0 +1,9 @@
+<% content_for :title, "Attendance saved" %>
+<h1 class="text-lg font-bold text-emerald-800">Saved</h1>
+<p class="text-sm text-slate-600 mt-2"><%= @session.section.display_name %> — <%= @session.half.humanize %> on <%= @session.on_date %></p>
+<ul class="mt-4 text-sm space-y-1">
+  <% @session.attendance_records.includes(:student).each do |r| %>
+    <li><%= r.student.full_name %>: <strong><%= r.status %></strong></li>
+  <% end %>
+</ul>
+<%= link_to "Done", root_path, class: "mt-6 inline-block rounded-xl bg-indigo-600 text-white px-6 py-3 font-semibold" %>

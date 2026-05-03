@@ -1,0 +1,15 @@
+<% content_for :title, "School settings" %>
+<h1 class="text-xl font-bold">School settings</h1>
+<%= form_with model: @school, url: admin_settings_path, method: :patch, class: "mt-4 space-y-4" do |f| %>
+  <label class="flex items-center gap-2 text-sm">
+    <%= hidden_field_tag :any_teacher_can_mark_bus, "0" %>
+    <%= check_box_tag :any_teacher_can_mark_bus, "1", @school.any_teacher_can_mark_bus?, class: "h-4 w-4" %>
+    Any teacher can mark bus stop progress
+  </label>
+  <label class="flex items-center gap-2 text-sm">
+    <%= hidden_field_tag :attendance_halves_enabled, "0" %>
+    <%= check_box_tag :attendance_halves_enabled, "1", @school.attendance_halves_enabled?, class: "h-4 w-4" %>
+    Attendance halves (first / second) enabled
+  </label>
+  <%= f.submit "Save", class: "rounded-xl bg-indigo-600 text-white px-6 py-2 font-semibold" %>
+<% end %>

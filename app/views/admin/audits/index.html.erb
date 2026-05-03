@@ -1,0 +1,16 @@
+<% content_for :title, "Audits" %>
+<h1 class="text-xl font-bold">Audit log</h1>
+<%= form_with url: admin_audits_path, method: :get, class: "mt-2 grid gap-2 text-sm" do %>
+  <%= text_field_tag :user_id, params[:user_id], placeholder: "User id", class: "border rounded px-2 py-1" %>
+  <%= text_field_tag :auditable_type, params[:auditable_type], placeholder: "Type e.g. Attendance::Session", class: "border rounded px-2 py-1" %>
+  <%= date_field_tag :from, params[:from] %>
+  <%= date_field_tag :to, params[:to] %>
+  <%= submit_tag "Filter", class: "rounded bg-indigo-600 text-white px-2 py-1" %>
+<% end %>
+<ul class="mt-4 space-y-2 text-xs font-mono">
+  <% @audits.each do |a| %>
+    <li class="border rounded p-2 bg-white">
+      <%= l a.created_at %> — <%= a.user&.email_address || "system" %> — <%= a.action %> <%= a.auditable_type %>#<%= a.auditable_id %>
+    </li>
+  <% end %>
+</ul>

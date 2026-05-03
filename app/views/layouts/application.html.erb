@@ -17,12 +17,42 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="min-h-screen bg-slate-50 text-slate-900 pb-24">
+    <% if Current.user&.admin? %>
+      <header class="bg-indigo-700 text-white px-4 py-3 flex flex-wrap gap-2 items-center justify-between">
+        <span class="font-semibold">Admin</span>
+        <nav class="flex flex-wrap gap-3 text-sm">
+          <%= link_to "Dashboard", admin_root_path, class: "underline" %>
+          <%= link_to "Academic years", admin_academic_years_path, class: "underline" %>
+          <%= link_to "Classes", admin_school_classes_path, class: "underline" %>
+          <%= link_to "Sections", admin_sections_path, class: "underline" %>
+          <%= link_to "Students", admin_students_path, class: "underline" %>
+          <%= link_to "Users", admin_users_path, class: "underline" %>
+          <%= link_to "Buses", admin_buses_path, class: "underline" %>
+          <%= link_to "Attendance report", admin_attendance_path, class: "underline" %>
+          <%= link_to "Transport", admin_transport_path, class: "underline" %>
+          <%= link_to "Audits", admin_audits_path, class: "underline" %>
+          <%= link_to "Settings", admin_settings_path, class: "underline" %>
+          <%= link_to "App home", root_path, class: "underline" %>
+        </nav>
+      </header>
+    <% end %>
+
+    <% if notice.present? %>
+      <div class="mx-auto max-w-lg px-4 pt-3 text-sm text-emerald-800" role="status"><%= notice %></div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="mx-auto max-w-lg px-4 pt-3 text-sm text-red-700" role="alert"><%= alert %></div>
+    <% end %>
+
+    <main class="mx-auto max-w-lg px-4 py-4">
+      <%= yield %>
+    </main>
+
+    <%= render "layouts/bottom_nav" if Current.user %>
   </body>
 </html>

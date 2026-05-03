@@ -1,0 +1,23 @@
+<% content_for :title, "Transport" %>
+<%= turbo_stream_from "admin_transport_#{Current.school.id}_#{@date}" %>
+<h1 class="text-xl font-bold">Transport — <%= @date %></h1>
+<%= form_with url: admin_transport_path, method: :get, class: "mt-2 text-sm" do %>
+  <%= date_field_tag :date, @date %>
+  <%= submit_tag "Go", class: "rounded bg-indigo-600 text-white px-2 py-1 text-sm" %>
+<% end %>
+
+<table class="mt-4 w-full text-sm border-collapse">
+  <thead>
+    <tr class="text-left border-b">
+      <th class="py-2">Bus</th>
+      <th>Shift</th>
+      <th>Progress</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trips.each do |trip| %>
+      <%= render "admin/transport/trip_row", trip: trip %>
+    <% end %>
+  </tbody>
+</table>

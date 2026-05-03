@@ -1,0 +1,20 @@
+<% content_for :title, "Attendance" %>
+<h1 class="text-lg font-bold">Mark attendance</h1>
+<p class="text-sm text-slate-600"><%= @section.display_name %> — <%= @half.humanize %> half</p>
+
+<%= form_with url: attendance_sessions_path(section_id: @section.id), method: :post, class: "mt-4 space-y-3", data: { controller: "mark-present" } do %>
+  <%= hidden_field_tag :half, @half %>
+  <ul class="space-y-2">
+    <% @students.each do |st| %>
+      <li class="rounded-xl border bg-white p-3 flex items-center justify-between gap-3">
+        <span class="font-medium text-slate-900"><%= st.full_name %></span>
+        <%= select_tag "statuses[#{st.id}]", options_for_select([["Present","present"],["Absent","absent"],["Late","late"],["Excused","excused"]], "present"), class: "text-base rounded-lg border px-2 py-2 min-w-[8rem]" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="fixed bottom-20 inset-x-0 px-4 max-w-lg mx-auto flex gap-2">
+    <button type="button" data-action="click->mark-present#mark" class="flex-1 rounded-xl border border-slate-300 bg-white py-3 font-semibold text-slate-800">All present</button>
+    <%= submit_tag "Submit", class: "flex-1 rounded-xl bg-indigo-600 text-white py-3 font-semibold" %>
+  </div>
+<% end %>

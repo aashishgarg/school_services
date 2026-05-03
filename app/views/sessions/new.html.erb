@@ -1,0 +1,22 @@
+<% content_for :title, "Sign in" %>
+
+<h1 class="text-2xl font-bold text-slate-900">Sign in</h1>
+<p class="mt-1 text-sm text-slate-600">School Services</p>
+
+<%= form_with url: session_path, class: "mt-6 space-y-4" do |f| %>
+  <div>
+    <%= label_tag :email_address, "Email", class: "block text-sm font-medium text-slate-700" %>
+    <%= email_field_tag :email_address, params[:email_address], required: true, autocomplete: "username", class: "mt-1 w-full rounded-lg border border-slate-300 px-3 py-3 text-base" %>
+  </div>
+  <div>
+    <%= label_tag :password, "Password", class: "block text-sm font-medium text-slate-700" %>
+    <%= password_field_tag :password, nil, required: true, autocomplete: "current-password", class: "mt-1 w-full rounded-lg border border-slate-300 px-3 py-3 text-base" %>
+  </div>
+  <div>
+    <%= f.submit "Sign in", class: "w-full rounded-xl bg-indigo-600 text-white font-semibold py-3 text-base cursor-pointer" %>
+  </div>
+<% end %>
+
+<p class="mt-6 text-center text-sm text-slate-600">
+  <%= link_to "Forgot password?", new_password_path, class: "text-indigo-600 underline" %>
+</p>

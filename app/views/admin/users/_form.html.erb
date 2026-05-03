@@ -1,0 +1,18 @@
+<%= form_with model: [:admin, @user], class: "space-y-3" do |f| %>
+  <%= f.label :email_address %>
+  <%= f.email_field :email_address, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :full_name %>
+  <%= f.text_field :full_name, class: "w-full border rounded px-2 py-2" %>
+  <%= f.label :role %>
+  <%= f.select :role, User.roles.keys, {}, class: "w-full border rounded px-2 py-2" %>
+  <label class="flex gap-2 items-center text-sm">
+    <%= f.check_box :active %> Active
+  </label>
+  <% if @user.persisted? %>
+    <%= f.label :password, "Password (leave blank to keep)" %>
+    <%= f.password_field :password, class: "w-full border rounded px-2 py-2" %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "w-full border rounded px-2 py-2" %>
+  <% end %>
+  <%= f.submit class: "rounded-xl bg-indigo-600 text-white px-6 py-2 font-semibold" %>
+<% end %>
