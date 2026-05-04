@@ -64,5 +64,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   # Minitest 6 breaks Rails 8.0 test runner line_filtering (ArgumentError)
-  gem "minitest", "~> 5.25"
+  gem "minitest", "~> 6.0"
 end

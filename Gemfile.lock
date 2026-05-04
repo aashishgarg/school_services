@@ -157,7 +157,9 @@ GEM
     marcel (1.1.0)
     matrix (0.4.3)
     mini_mime (1.1.5)
-    minitest (5.25.5)
+    minitest (6.0.6)
+      drb (~> 2.0)
+      prism (~> 1.5)
     msgpack (1.8.0)
     net-imap (0.6.3)
       date
@@ -363,11 +365,11 @@ DEPENDENCIES
   bootsnap
   brakeman
   capybara
-  minitest (~> 5.25)
   debug
   importmap-rails
   jbuilder
   kamal
+  minitest (~> 6.0)
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)
